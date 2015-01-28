@@ -1,0 +1,23 @@
+{
+    "name": "adjust/gemstone-api",
+    "license": "MIT",
+    "description": "API access to gemstone",
+    "keywords": ["api", "php"],
+    "homepage": "https://github.com/adjust/gemstone-api",
+    "authors": [
+        {
+            "name": "Adjust Agency",
+            "homepage": "https://github.com/adjust"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-0": {
+            "GemstoneApi": "src/"
+        }
+    }
+}
