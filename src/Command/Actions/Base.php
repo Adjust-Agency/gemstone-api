@@ -2,8 +2,8 @@
 
 abstract class Base
 {
-    //const URL_API = 'http://gemstone.adjust.be/actions/api';
-    const URL_API = 'http://localhost:8000/actions/api';
+    const URL_API = 'http://gemstone.adjust.be/actions/api';
+    //const URL_API = 'http://localhost:8000/actions/api';
 
     protected $key;
 
