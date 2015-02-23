@@ -16,8 +16,8 @@
     "require-dev": {
     },
     "autoload": {
-        "psr-0": {
-            "GemstoneApi": "src/"
+        "psr-4": {
+            "Adjust\\GemstoneApi\\": "src/"
         }
     }
 }
