@@ -9,7 +9,7 @@ class InsertTest extends \TestBootstrap
         $action = 'action_name';
         $started_at = '2015-07-12';
         $account_id = 5;
-        $url = 'http://localhost:8000/actions/api/insert?key='.$key;
+        $url = 'http://gemstone.adjust.be/actions/api/insert?key='.$key;
         $actions_insert = new \Adjust\GemstoneApi\Command\Actions\Insert($key, $product, $action, $started_at, $account_id);
         $this->assertEquals($actions_insert->getCommandName(),'insert');
         $this->assertEquals($actions_insert->getCommandMethod(),'post');
