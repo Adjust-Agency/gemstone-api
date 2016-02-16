@@ -33,7 +33,9 @@ class Insert extends Base implements ApiCommand
             $value['product'] = $this->action_infos['product'];
             $value['action'] = $this->action_infos['action'];
             $value['started_at'] = $this->action_infos['started_at'];
-            $value['account_id'] = $this->action_infos['account_id'];
+            if(isset($this->action_infos['account_id']) && $this->action_infos['account_id']) {
+                $value['account_id'] = $this->action_infos['account_id'];
+            }
             $this->values['list'][] = $value;
         }
         
