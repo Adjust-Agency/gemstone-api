@@ -2,8 +2,8 @@
 
 abstract class Base
 {
-    const URL_API = 'http://gemstone.local/api/htgf/v1/event';
-    //const URL_API = 'http://gemstone.adjust.be/api/htgf/v1/event';
+    //const URL_API = 'http://gemstone.local/api/htgf/v1/event';
+    const URL_API = 'http://gemstone.adjust.be/api/htgf/v1/event';
 
     protected $key;
 
