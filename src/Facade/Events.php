@@ -4,7 +4,7 @@ class Events {
 
     protected $infos_keys = ['lastname', 'firstname', 'address', 'number', 'city', 'postcode'];
 
-    public static function insertPostFormResult($action_identifier, $form_name, $email, $lng, $optin, $datas) {
+    public static function insertPostFormResult($action_identifier, $form_name, $email, $lng, $optin, $datas, $type = 'lead') {
         
         $events_insert = new \Adjust\GemstoneApi\Command\Events\Insert($action_identifier);
 
@@ -15,7 +15,7 @@ class Events {
             'email'       => $email,
             'lng'         => $lng,
             'optin'       => $optin,
-            'type'        => 'lead',
+            'type'        => $type,
             'hash'        => !empty($_COOKIE['htgs_ref']) ? $_COOKIE['htgs_ref'] : null,
         ];
 
