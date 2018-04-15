@@ -2,7 +2,7 @@
 
 use Adjust\GemstoneApi\Command\ApiCommand;
 
-class Insert extends Base implements ApiCommand
+class Insert extends Base
 {
 
     protected $command_name   = 'create';
@@ -21,5 +21,4 @@ class Insert extends Base implements ApiCommand
     {
         $this->values = $entry;
     }
-
 }

@@ -1,22 +1,29 @@
 <?php namespace Adjust\GemstoneApi\Facade;
 
-class Events {
+class Events
+{
 
-    protected $infos_keys = ['lastname', 'firstname', 'address', 'number', 'city', 'postcode'];
-
-    public static function insertPostFormResult($action_identifier, $form_name, $email, $lng, $optin, $datas, $type = 'lead') {
+    public static function insertPostFormResult($action_identifier, $form_name, $email, $lng, $optin, $datas, $type = 'lead')
+    {
         
         $events_insert = new \Adjust\GemstoneApi\Command\Events\Insert($action_identifier);
 
         $insert_data = [
-            'event_name'  => 'filled_form',
-            'event_value' => $form_name,
-            'action'      => $action_identifier,
-            'email'       => $email,
-            'lng'         => $lng,
-            'optin'       => $optin,
-            'type'        => $type,
-            'hash'        => !empty($_COOKIE['htgs_ref']) ? $_COOKIE['htgs_ref'] : null,
+            'event_name'           => 'filled_form',
+            'event_value'          => $form_name,
+            'action'               => $action_identifier,
+            'email'                => $email,
+            'lng'                  => $lng,
+            'optin'                => $optin,
+            'type'                 => $type,
+            'hash'                 => !empty($_COOKIE['htgs_ref']) ? $_COOKIE['htgs_ref'] : null,
+            
+            'http_client_ip'       => !empty($_SERVER['HTTP_CLIENT_IP']) ? $_SERVER['HTTP_CLIENT_IP'] : null,
+            'http_x_forwarded_for' => !empty($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : null,
+            'remote_addr'          => !empty($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : null,
+            'http_referer'         => !empty($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : null,
+            'http_host'            => !empty($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : null,
+            'request_uri'          => !empty($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : null,
         ];
 
         foreach ($datas as $key => $value) {
@@ -34,7 +41,6 @@ class Events {
         }
 
         return $result;
-
     }
 
     protected static function updateHash($fullhash, $new_hashpart, $new_bit)
@@ -49,5 +55,4 @@ class Events {
         ];
         return implode('.', $data);
     }
-
 }

@@ -4,7 +4,7 @@ class ApiRequestTest extends TestBootstrap
 {
     public function testBuildGetUrl()
     {
-        $request_stub = $this->getMock('Adjust\GemstoneApi\Http\Request');
+        $request_stub = $this->createMock('Adjust\GemstoneApi\Http\Request');
         $api_request = new Adjust\GemstoneApi\ApiRequest($request_stub);
         $url = $api_request->buildGetUrl('http://www.example.com/test', array('test'=>'yep','hello'=>'world'));
         $this->assertEquals($url, 'http://www.example.com/test?test=yep&hello=world');
@@ -14,11 +14,11 @@ class ApiRequestTest extends TestBootstrap
 
     public function testPostSend()
     {
-        $request_stub = $this->getMock('Adjust\GemstoneApi\Http\Request');
+        $request_stub = $this->createMock('Adjust\GemstoneApi\Http\Request');
         $request_stub->expects($this->exactly(1))
                      ->method('post')
                      ->will($this->returnValue(json_encode(array('return'=>'yeah'))));
-        $command_stub = $this->getMock('Adjust\GemstoneApi\Command\ApiCommand');
+        $command_stub = $this->createMock('Adjust\GemstoneApi\Command\ApiCommand');
         $command_stub->expects($this->exactly(1))
                      ->method('getCommandMethod')
                      ->will($this->returnValue('post'));
@@ -36,11 +36,11 @@ class ApiRequestTest extends TestBootstrap
 
     public function testGetSend()
     {
-        $request_stub = $this->getMock('Adjust\GemstoneApi\Http\Request');
+        $request_stub = $this->createMock('Adjust\GemstoneApi\Http\Request');
         $request_stub->expects($this->exactly(1))
                      ->method('get')
                      ->will($this->returnValue(json_encode(array('return'=>'yeah'))));
-        $command_stub = $this->getMock('Adjust\GemstoneApi\Command\ApiCommand');
+        $command_stub = $this->createMock('Adjust\GemstoneApi\Command\ApiCommand');
         $command_stub->expects($this->exactly(1))
                      ->method('getCommandMethod')
                      ->will($this->returnValue('get'));

@@ -2,29 +2,20 @@
 
 use Adjust\GemstoneApi\Command\ApiCommand;
 
-class Update extends Base implements ApiCommand
+class Update extends Base
 {
 
     protected $command_name   = 'update';
     protected $command_method = 'post';
-    protected $values = array('list'=>array());
+    protected $values = [];
 
-    public function __construct($key)
+    public function __construct()
     {
-        parent::__construct($key);
+        parent::__construct();
     }
 
     public function insert($entry)
     {
-        $this->inserts(array($entry));
+        $this->values = $entry;
     }
-
-    public function inserts($entries)
-    {
-        foreach ($entries as $key => $value) {
-            $this->values['list'][] = $value;
-        }
-        
-    }
-
 }
