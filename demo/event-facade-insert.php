@@ -1,29 +1,30 @@
 <?php
-ini_set('display_errors', 1); 
+ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 require __DIR__.'/../autoload.php';
 
 $key = '12345';
 
-$actions_update = new Adjust\GemstoneApi\Command\Actions\Update($key);
-//update one by one
-$actions_update->insert(array(
-    'where' => array(
-        'email' => 'dd@acme.com', 
-        'product' => 'product', 
-    ),
-    'optin' => 0
-));
-$actions_update->insert(array(
-    'where' => array(
-        'email' => 'jj@acme.com', 
-        'product' => 'product', 
-    ),
-    'optin' => 0
-));
+$action_identifier = "test-action-001";
+$form_name = "test-form";
+$email = "test@example.com";
+$lng = "fr";
+$optin = true;
+$datas = [
+    "fistname" => "John",
+    "lastname" => "Doe",
+];
+$type = "lead";
 
-//do the request
-$api_request = Adjust\GemstoneApi\ApiRequest::make();
-$result = $api_request->send($actions_update);
+$result = Adjust\GemstoneApi\Facade\Events::insertPostFormResult(
+    $action_identifier,
+    $form_name,
+    $email,
+    $lng,
+    $optin,
+    $datas,
+    $type
+);
+
 var_dump($result);

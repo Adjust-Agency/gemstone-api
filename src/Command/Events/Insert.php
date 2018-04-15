@@ -21,5 +21,4 @@ class Insert extends Base
     {
         $this->values = $entry;
     }
-
 }

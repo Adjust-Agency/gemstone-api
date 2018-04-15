@@ -34,24 +34,14 @@ class UpdateTest extends \TestBootstrap
         $enga_update = new \Adjust\GemstoneApi\Command\Engagements\Update();
         $enga_update->insert([
             'where' => [
-                'action_identifier' => 'mc-2342', 
+                'action_identifier' => 'mc-2342',
             ],
             'optin' => 0
         ]);
-
-        $q = http_build_query([
-            'where' => [
-                'action_identifier' => 'mc-2342', 
-            ],
-            'optin' => 0
-        ]);
-        parse_str($q, $s);
-        print_r($s);
-        exit('iix');
 
         $this->assertEquals($enga_update->getCommandValues(), [
             'where' => [
-                'action_identifier' => 'mc-2342', 
+                'action_identifier' => 'mc-2342',
             ],
             'optin' => 0
         ]);

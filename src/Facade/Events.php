@@ -1,10 +1,10 @@
 <?php namespace Adjust\GemstoneApi\Facade;
 
-class Events {
+class Events
+{
 
-    protected $infos_keys = ['lastname', 'firstname', 'address', 'number', 'city', 'postcode'];
-
-    public static function insertPostFormResult($action_identifier, $form_name, $email, $lng, $optin, $datas, $type = 'lead') {
+    public static function insertPostFormResult($action_identifier, $form_name, $email, $lng, $optin, $datas, $type = 'lead')
+    {
         
         $events_insert = new \Adjust\GemstoneApi\Command\Events\Insert($action_identifier);
 
@@ -41,7 +41,6 @@ class Events {
         }
 
         return $result;
-
     }
 
     protected static function updateHash($fullhash, $new_hashpart, $new_bit)
@@ -56,5 +55,4 @@ class Events {
         ];
         return implode('.', $data);
     }
-
 }
