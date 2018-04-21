@@ -2,11 +2,13 @@
 
 class Events
 {
+    protected static $api_key = null;
 
     public static function insertPostFormResult($action_identifier, $form_name, $email, $lng, $optin, $datas, $type = 'lead')
     {
         
         $events_insert = new \Adjust\GemstoneApi\Command\Events\Insert($action_identifier);
+        $event_insert->setApiKey(self::$api_key);
 
         $insert_data = [
             'event_name'           => 'filled_form',
@@ -41,6 +43,11 @@ class Events
         }
 
         return $result;
+    }
+
+    public static function setApiKey($api_key)
+    {
+        self::$api_key = $api_key;
     }
 
     protected static function updateHash($fullhash, $new_hashpart, $new_bit)

@@ -17,6 +17,10 @@ $datas = [
 ];
 $type = "lead";
 
+// Set api key
+Adjust\GemstoneApi\Facade\Events::setApiKey($key);
+
+// Insert
 $result = Adjust\GemstoneApi\Facade\Events::insertPostFormResult(
     $action_identifier,
     $form_name,
