@@ -8,7 +8,7 @@ class Events
     {
         
         $events_insert = new \Adjust\GemstoneApi\Command\Events\Insert($action_identifier);
-        $event_insert->setApiKey(self::$api_key);
+        $events_insert->setApiKey(self::$api_key);
 
         $insert_data = [
             'event_name'           => 'filled_form',
