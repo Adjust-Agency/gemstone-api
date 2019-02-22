@@ -6,20 +6,33 @@ class Events
 
     public static function insertPostFormResult($action_identifier, $form_name, $email, $lng, $optin, $datas, $type = 'lead')
     {
-        
+        $result = self::insert('filled_form', $action_identifier, $form_name, $email, $lng, $optin, $datas, $type);
+
+        return $result;
+    }
+
+    public static function insertEmailSend($action_identifier, $email, $lng, $type = 'lead')
+    {
+        $result = self::insert('email_sent', $action_identifier, '', $email, $lng, 1, [], $type);
+
+        return $result;
+    }
+
+    public static function insert($event_name, $action_identifier, $event_value, $email, $lng, $optin, $datas, $type = 'lead')
+    {
         $events_insert = new \Adjust\GemstoneApi\Command\Events\Insert($action_identifier);
         $events_insert->setApiKey(self::$api_key);
 
         $insert_data = [
-            'event_name'           => 'filled_form',
-            'event_value'          => $form_name,
+            'event_name'           => $event_name,
+            'event_value'          => $event_value,
             'action'               => $action_identifier,
             'email'                => $email,
             'lng'                  => $lng,
             'optin'                => $optin,
             'type'                 => $type,
             'hash'                 => !empty($_COOKIE['htgs_ref']) ? $_COOKIE['htgs_ref'] : null,
-            
+
             'http_client_ip'       => !empty($_SERVER['HTTP_CLIENT_IP']) ? $_SERVER['HTTP_CLIENT_IP'] : null,
             'http_x_forwarded_for' => !empty($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : null,
             'remote_addr'          => !empty($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : null,

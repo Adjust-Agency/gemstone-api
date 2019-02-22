@@ -43,5 +43,5 @@ class ApiRequest
         return new self(new Request());
     }
 
-    
+
 }
