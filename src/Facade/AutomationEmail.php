@@ -2,7 +2,7 @@
 
 class AutomationEmail
 {
-    public static function send($api_key, $campaign_id, $prospect_id, $merge_tags)
+    public static function send($api_key, $campaign_id, $prospect_id, $merge_tags, $from, $subject)
     {
         $email_create = new \Adjust\GemstoneApi\Command\Automation\EmailCreate();
         $email_create->setApiKey($api_key);
@@ -11,6 +11,8 @@ class AutomationEmail
             'campaign_id' => $campaign_id,
             'prospect_id' => $prospect_id,
             'merge_tags'  => $merge_tags,
+            'from'        => $from,
+            'subject'     => $subject,
         ];
 
         $email_create->create($create_data);

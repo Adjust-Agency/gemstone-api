@@ -9,6 +9,8 @@ $api_key = '12345';
 $action_identifier = "test-action-001";
 $email = "john@example.com";
 $lng = "fr";
+$from = ['name' => 'Api Tester', 'address' => 'test@gemstone.mx'];
+$subject = 'Test Send via API';
 
 // Set api key
 Adjust\GemstoneApi\Facade\Events::setApiKey($api_key);
@@ -21,7 +23,7 @@ if ($result && $result->success === 1) {
     $merge_tags = ['tag' => 'hello world'];
 
     // Send
-    $result = Adjust\GemstoneApi\Facade\AutomationEmail::send($api_key, $campaign_id, $prospect_id, $merge_tags);
+    $result = Adjust\GemstoneApi\Facade\AutomationEmail::send($api_key, $campaign_id, $prospect_id, $merge_tags, $from, $subject);
 
     var_dump($result);
 }
