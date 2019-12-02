@@ -47,8 +47,12 @@ class Events
         
         if(!empty($_GET['_gmst'])) {
             parse_str(base64_decode($_GET['_gmst']), $_source);
-            if(!empty($_source)) {
+            if(!empty($_source) && is_array($_source)) {
+                
                 // Do something with $_source['type'] and $_source['value']
+                foreach($_source as $key => $value) {
+                    $insert_data['pinfo_'.$key] = $value;
+                }
             }
         }
 
