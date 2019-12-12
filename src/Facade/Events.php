@@ -45,17 +45,20 @@ class Events
             $insert_data['pinfo_'.$key] = $value;
         }
         
-        if(!empty($_GET['_gmst'])) {
-            parse_str(base64_decode($_GET['_gmst']), $_source);
+        $hashKey = '_gmst';
+        if(!empty($_GET[$hashKey]) || !empty($datas[$hashKey])) {
+            $base64 = !empty($_GET[$hashKey]) ? $_GET[$hashKey] : $datas[$hashKey];
+            parse_str(base64_decode($base64), $_source);
             if(!empty($_source) && is_array($_source)) {
                 
-                // Do something with $_source['type'] and $_source['value']
+                // Do something with $_source['traffic_type'] and $_source['traffic_value']
                 foreach($_source as $key => $value) {
                     $insert_data['pinfo_'.$key] = $value;
                 }
             }
-        }
-
+            @unset($insert_data['pinfo_' . $hashKey]);
+        }        
+        
         $events_insert->insert($insert_data);
         $api_request = \Adjust\GemstoneApi\ApiRequest::make();
         $result = $api_request->send($events_insert);
