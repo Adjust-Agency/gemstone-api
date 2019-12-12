@@ -56,7 +56,11 @@ class Events
                     $insert_data['pinfo_'.$key] = $value;
                 }
             }
-            @unset($insert_data['pinfo_' . $hashKey]);
+            try {
+                unset($insert_data['pinfo_' . $hashKey]);
+            } catch(\Exception $e) {
+                // dies silently
+            }
         }        
         
         $events_insert->insert($insert_data);
